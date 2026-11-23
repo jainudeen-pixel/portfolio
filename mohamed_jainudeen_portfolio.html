@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Mohamed Jainudeen, a Computer Science student at Jamal Mohamed College, Tiruchirappalli, interested in networking, servers, and network fundamentals.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Mohamed Jainudeen | Computer Science Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111c2e;
+      --surface-2: #15243a;
+      --line: rgba(172, 197, 230, .14);
+      --text: #edf4ff;
+      --muted: #9aacc5;
+      --accent: #62d6c5;
+      --accent-2: #8ab8ff;
+      --max: 1120px;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(64, 129, 176, .17), transparent 34rem),
+        radial-gradient(ellipse at 90% 32%, rgba(49, 166, 150, .10), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .container { width: min(var(--max), calc(100% - 44px)); margin-inline: auto; }
+    .mono { font-family: "DM Mono", monospace; }
+    .accent { color: var(--accent); }
+    .muted { color: var(--muted); }
+    .topbar {
+      position: fixed; inset: 0 0 auto; z-index: 20;
+      background: rgba(11, 18, 32, .82); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; font-size: 1.05rem; white-space: nowrap; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 27px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .88rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-btn { display: none; border: 1px solid var(--line); color: var(--text); background: var(--surface); border-radius: 10px; padding: 8px 12px; font: inherit; }
+    main { overflow: hidden; }
+    section { padding: 104px 0; border-bottom: 1px solid var(--line); }
+    .hero { min-height: 100svh; display: grid; align-items: center; padding-top: 130px; }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 64px; align-items: center; }
+    .eyebrow { color: var(--accent); font: 500 .78rem "DM Mono", monospace; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; }
+    h1, h2, h3 { line-height: 1.13; letter-spacing: -.045em; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.7rem); max-width: 800px; }
+    h1 .name-line { display: block; color: var(--accent); }
+    .hero-copy { color: var(--muted); max-width: 620px; font-size: 1.08rem; margin-top: 25px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 34px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 19px; border-radius: 999px; font-weight: 700; font-size: .9rem; border: 1px solid var(--line); transition: transform .2s, background .2s, border-color .2s; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #08201f; border-color: var(--accent); }
+    .btn-secondary { background: rgba(255,255,255,.025); }
+    .visual-card { position: relative; padding: 27px; border: 1px solid var(--line); border-radius: 26px; background: linear-gradient(145deg, rgba(21,36,58,.96), rgba(13,24,40,.88)); box-shadow: 0 28px 80px rgba(0,0,0,.22); }
+    .visual-card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, rgba(98,214,197,.35), transparent 40%, rgba(138,184,255,.22)); z-index: -1; filter: blur(16px); opacity: .5; }
+    .server-icon { width: 74px; height: 74px; display: grid; place-items: center; border-radius: 20px; background: rgba(98,214,197,.1); color: var(--accent); margin-bottom: 24px; }
+    .server-icon svg { width: 38px; height: 38px; }
+    .visual-card h2 { font-size: 1.5rem; margin-bottom: 9px; }
+    .visual-card p { color: var(--muted); font-size: .92rem; }
+    .terminal { margin-top: 25px; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; background: #09111e; }
+    .terminal-head { padding: 10px 13px; border-bottom: 1px solid var(--line); display: flex; gap: 6px; }
+    .terminal-head i { width: 8px; height: 8px; display: block; border-radius: 50%; background: #52647d; }
+    .terminal-body { padding: 16px; color: #a9bdd4; font: .77rem/2 "DM Mono", monospace; }
+    .terminal-body .prompt { color: var(--accent); }
+    .terminal-body .output { color: #e4efff; }
+    .section-head { max-width: 700px; margin-bottom: 44px; }
+    h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
+    .section-intro { color: var(--muted); margin-top: 15px; max-width: 650px; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 65px; align-items: start; }
+    .about-panel { padding: 27px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+    .about-panel p + p { margin-top: 15px; }
+    .fact-list { display: grid; gap: 0; margin-top: 23px; }
+    .fact { display: flex; justify-content: space-between; gap: 20px; padding: 13px 0; border-top: 1px solid var(--line); font-size: .9rem; }
+    .fact span:first-child { color: var(--muted); }
+    .fact span:last-child { text-align: right; font-weight: 700; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .card { padding: 25px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(17,28,46,.95), rgba(14,24,40,.8)); }
+    .card-icon { width: 45px; height: 45px; display: grid; place-items: center; border-radius: 13px; background: rgba(98,214,197,.1); color: var(--accent); margin-bottom: 19px; font-size: 1.25rem; }
+    .card h3 { font-size: 1.12rem; margin-bottom: 9px; letter-spacing: -.02em; }
+    .card p { color: var(--muted); font-size: .9rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .tag { font: .76rem "DM Mono", monospace; color: #c4d5e9; border: 1px solid var(--line); background: rgba(255,255,255,.025); border-radius: 999px; padding: 7px 11px; }
+    .learning-note { margin-top: 22px; padding: 17px 19px; border-left: 3px solid var(--accent); background: rgba(98,214,197,.07); border-radius: 0 12px 12px 0; color: var(--muted); font-size: .9rem; }
+    .education { display: grid; grid-template-columns: 70px 1fr; gap: 22px; padding: 27px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+    .edu-icon { width: 60px; height: 60px; display: grid; place-items: center; border-radius: 17px; background: rgba(138,184,255,.11); color: var(--accent-2); font-size: 1.5rem; }
+    .education h3 { font-size: 1.3rem; margin: 5px 0 8px; }
+    .education p { color: var(--muted); }
+    .project-placeholder { padding: 32px; border: 1px dashed rgba(172,197,230,.28); border-radius: var(--radius); background: rgba(17,28,46,.45); }
+    .project-placeholder h3 { font-size: 1.25rem; margin-bottom: 10px; }
+    .project-placeholder p { color: var(--muted); max-width: 720px; }
+    .project-placeholder .tag-row { margin-top: 17px; }
+    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 34px; border-radius: 24px; border: 1px solid rgba(98,214,197,.25); background: linear-gradient(120deg, rgba(98,214,197,.09), rgba(138,184,255,.06)); }
+    .contact-box h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
+    .contact-box p { color: var(--muted); margin-top: 10px; max-width: 560px; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    footer { padding: 28px 0; color: var(--muted); font-size: .82rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 38px; }
+      .hero { padding-top: 145px; }
+      .visual-card { max-width: 540px; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { gap: 16px; }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 32px, var(--max)); }
+      section { padding: 78px 0; }
+      .nav { min-height: 66px; }
+      .menu-btn { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 66px; left: 0; right: 0; padding: 18px 22px 22px; background: #0d1727; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      .nav-links.open { display: flex; }
+      .hero { min-height: auto; padding: 140px 0 75px; }
+      .cards { grid-template-columns: 1fr; }
+      .education { grid-template-columns: 1fr; }
+      .contact-box { align-items: flex-start; flex-direction: column; padding: 25px; }
+      .fact { flex-direction: column; gap: 3px; }
+      .fact span:last-child { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">MOHAMED<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#interests">Interests</a></li>
+        <li><a href="#learning">Learning</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Computer Science Student · Curious Learner</p>
+          <h1>Hello, I'm <span class="name-line">Mohamed Jainudeen.</span></h1>
+          <p class="hero-copy">I'm a Computer Science student interested in networking and servers. I enjoy learning how networks work, exploring technical concepts, and building my understanding of network fundamentals step by step.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#about">Explore my portfolio <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <aside class="visual-card reveal" aria-label="Networking and server learning focus">
+          <div class="server-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="8" y="5" width="32" height="12" rx="3"/><rect x="8" y="21" width="32" height="12" rx="3"/><rect x="8" y="37" width="32" height="6" rx="2"/>
+              <path d="M14 11h.01M14 27h.01M14 40h.01M20 11h14M20 27h14"/>
+            </svg>
+          </div>
+          <p class="eyebrow">My current interests</p>
+          <h2>Networks. Servers. How things connect.</h2>
+          <p>Learning the foundations behind connected systems, one concept at a time.</p>
+          <div class="terminal" aria-label="Decorative terminal illustration">
+            <div class="terminal-head"><i></i><i></i><i></i></div>
+            <div class="terminal-body">
+              <div><span class="prompt">$</span> focus --area networking</div>
+              <div class="output">Network basics</div>
+              <div><span class="prompt">$</span> interest --area servers</div>
+              <div class="output">Keep learning. Keep exploring.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="section-head reveal">
+          <p class="eyebrow">01 / About me</p>
+          <h2>Learning the technology behind the connection.</h2>
+        </div>
+        <div class="about-panel reveal">
+          <p>I'm Mohamed Jainudeen, a Computer Science student at Jamal Mohamed College, Tiruchirappalli. I'm interested in networking and servers, and I like learning how computer systems communicate and work together.</p>
+          <p>One of my hobbies is learning technical topics, especially network basics. I believe that understanding the fundamentals is an important part of growing in technology, so I'm building my knowledge step by step.</p>
+          <p class="muted">This portfolio is a snapshot of my interests and learning journey. I'll add verified skills, projects, and achievements as I complete them.</p>
+          <div class="fact-list">
+            <div class="fact"><span>Name</span><span>Mohamed Jainudeen</span></div>
+            <div class="fact"><span>Field of study</span><span>Computer Science</span></div>
+            <div class="fact"><span>College</span><span>Jamal Mohamed College</span></div>
+            <div class="fact"><span>Location</span><span>Tiruchirappalli</span></div>
+            <div class="fact"><span>Interests</span><span>Networking &amp; Servers</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">02 / Interests</p>
+          <h2>The areas I'm curious about.</h2>
+          <p class="section-intro">These are the topics that currently motivate me to explore, ask questions, and keep learning.</p>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">⌘</div>
+            <h3>Computer Networking</h3>
+            <p>Understanding how devices communicate, how data moves, and how networks are organised.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">▤</div>
+            <h3>Servers</h3>
+            <p>Exploring the role servers play in providing services and supporting connected systems.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">⌁</div>
+            <h3>Technical Learning</h3>
+            <p>Enjoying the process of learning technical concepts and strengthening my fundamentals.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">03 / Learning focus</p>
+          <h2>Building my technical foundation.</h2>
+          <p class="section-intro">My current stated learning interest is network basics. This section can grow as I study more topics and gain hands-on experience.</p>
+        </div>
+        <div class="about-panel reveal">
+          <h3>Network basics</h3>
+          <p class="muted">I'm interested in understanding the fundamentals of computer networks and how connected devices exchange information.</p>
+          <div class="tag-row">
+            <span class="tag">Network Fundamentals</span>
+            <span class="tag">Networking Concepts</span>
+            <span class="tag">Servers</span>
+            <span class="tag">Technical Learning</span>
+          </div>
+          <div class="learning-note"><strong class="accent">Learning mindset:</strong> These tags describe my areas of interest, not a claim of professional-level expertise or certification.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">04 / Education</p>
+          <h2>My academic background.</h2>
+        </div>
+        <article class="education reveal">
+          <div class="edu-icon" aria-hidden="true">▣</div>
+          <div>
+            <p class="eyebrow">College</p>
+            <h3>Jamal Mohamed College</h3>
+            <p>Tiruchirappalli, Tamil Nadu</p>
+            <p class="muted" style="margin-top:8px">Degree / field: Computer Science</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="resume">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">05 / Resume</p>
+          <h2>A snapshot of my background.</h2>
+          <p class="section-intro">A concise resume covering my current academic background, interests, and learning focus.</p>
+        </div>
+        <div class="about-panel reveal">
+          <h3>Mohamed Jainudeen</h3>
+          <p class="accent" style="margin-top:7px;font-weight:700">Computer Science Student</p>
+          <p style="margin-top:14px">Computer Science student at Jamal Mohamed College, Tiruchirappalli, interested in computer networking and servers. I enjoy learning technical topics, especially network fundamentals, and understanding how connected systems communicate.</p>
+          <div class="fact-list">
+            <div class="fact"><span>Education</span><span>Jamal Mohamed College</span></div>
+            <div class="fact"><span>Field of study</span><span>Computer Science</span></div>
+            <div class="fact"><span>Location</span><span>Tiruchirappalli, Tamil Nadu</span></div>
+            <div class="fact"><span>Areas of interest</span><span>Networking &amp; Servers</span></div>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Network Fundamentals</span>
+            <span class="tag">Computer Networking</span>
+            <span class="tag">Servers</span>
+            <span class="tag">Technical Learning</span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="mohamed_jainudeen_resume.pdf" download>Download Resume <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-secondary" href="https://github.com/jainudeen-pixel" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="btn btn-secondary" href="https://linkedin.com/in/mr-jainudeen" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+          <div class="learning-note">This resume reflects the information currently provided. Contact details, exact degree title, study year, skills, certifications, and experience can be added when confirmed.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">06 / Projects</p>
+          <h2>Projects will be added as I build them.</h2>
+          <p class="section-intro">I haven't listed any completed projects yet because I want this portfolio to reflect work I've genuinely done.</p>
+        </div>
+        <div class="project-placeholder reveal">
+          <h3>My project showcase is coming soon.</h3>
+          <p>As I complete practical work related to networking, servers, or computer science, I'll add each project here with its goal, technologies used, what I learned, and a link to the source code or demonstration where available.</p>
+          <div class="tag-row">
+            <span class="tag">Real work only</span>
+            <span class="tag">Learning notes</span>
+            <span class="tag">Future updates</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <p class="eyebrow">07 / Contact</p>
+            <h2>Let's connect and learn.</h2>
+            <p>I'm happy to connect with people who are interested in computer science, networking, servers, and technology.</p>
+          </div>
+          <div class="contact-actions" aria-label="Social profiles">
+            <a class="btn btn-primary" href="https://github.com/jainudeen-pixel" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="https://linkedin.com/in/mr-jainudeen" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Mohamed Jainudeen</span>
+      <span>Built with curiosity and a love of learning.</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
